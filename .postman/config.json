@@ -5,6 +5,7 @@
   "entities": {
     "collections": [
       "../postman/collections/Accounts API_52176198-41b5af26-4f30-4e69-8876-18b1bc13d4cb.postman_collection.json",
+      "../postman/collections/accounts-accounts-api_52176198-7d77fe44-bad0-4a5f-b9f7-3fc3caa77146.postman_collection.json",
       "../postman/collections/accounts-accounts-api_52176198-a8d5651f-0e82-4589-87c4-ad2b2a2e500c.postman_collection.json",
       "../postman/collections/accounts-accounts-api_52176198-e2ad4b31-b3c9-4197-b7ac-fae166bb158f.postman_collection.json"
     ],
