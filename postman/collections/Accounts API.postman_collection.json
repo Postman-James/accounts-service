@@ -1,6 +1,6 @@
 {
   "info": {
-    "_postman_id": "accounts-api-collection",
+    "_postman_id": "41b5af26-4f30-4e69-8876-18b1bc13d4cb",
     "name": "Accounts API",
     "description": "API for managing user accounts, balances, and onboarding workflows",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
@@ -39,7 +39,7 @@
           }
         }
       ],
-      "id": "b845750c-d104-49d3-b872-5bd3db53fd3c",
+      "id": "7a83cf19-f476-4dd0-9e6d-44f1d110ceb8",
       "request": {
         "method": "POST",
         "header": [
@@ -104,7 +104,7 @@
           }
         }
       ],
-      "id": "257a981e-76ef-4e3e-ae46-dc5cf9a6b8c0",
+      "id": "747235fa-e4de-46dc-8e0b-667a49139d5c",
       "request": {
         "method": "GET",
         "header": [],
@@ -119,6 +119,7 @@
           ],
           "variable": [
             {
+              "id": "908f178c-69f2-48b7-9e0c-2254e2fb4770",
               "key": "id",
               "value": "a1",
               "description": "The account ID"
@@ -150,7 +151,7 @@
           }
         }
       ],
-      "id": "6774f7b7-b7e0-4934-a537-6adf3b8e2b11",
+      "id": "eccd590c-84d3-43e1-8f47-0d893a6257d8",
       "request": {
         "method": "GET",
         "header": [],
@@ -200,7 +201,7 @@
           }
         }
       ],
-      "id": "3b3f500f-4675-4005-994c-86b91109e98f",
+      "id": "466786f7-f949-409b-9d46-35029f86a390",
       "request": {
         "method": "POST",
         "header": [
@@ -230,6 +231,7 @@
           ],
           "variable": [
             {
+              "id": "1715534c-bcfd-4ee0-bb1a-0ae704c227ac",
               "key": "id",
               "value": "a1",
               "description": "The account ID"
@@ -278,7 +280,7 @@
           }
         }
       ],
-      "id": "4c23a9ff-9539-46e6-91c4-7aa835c1ddb5",
+      "id": "2a5829b3-1b8e-467a-827c-ab848d4266de",
       "request": {
         "method": "POST",
         "header": [
@@ -335,7 +337,7 @@
           }
         }
       ],
-      "id": "78dd1152-5931-4946-a629-f6f62e15e02a",
+      "id": "2c0b0301-fdbc-4aa4-a7eb-e4ff881f3d0c",
       "request": {
         "method": "GET",
         "header": [],
