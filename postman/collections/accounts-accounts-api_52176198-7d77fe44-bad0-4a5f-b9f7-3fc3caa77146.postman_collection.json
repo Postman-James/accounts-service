@@ -1,0 +1,541 @@
+{
+  "info": {
+    "_postman_id": "7d77fe44-bad0-4a5f-b9f7-3fc3caa77146",
+    "name": "accounts/accounts-api",
+    "description": "This collection was auto-generated via the API Catalog Onboarding process.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "GET /users/u1",
+      "id": "68a35c6e-f34f-4429-9f24-f16b550917a3",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/users/u1",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "users",
+            "u1"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "GET /users/u10",
+      "id": "491bad1c-47bd-46bc-9a31-482bfcc8c43b",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/users/u10",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "users",
+            "u10"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "GET /users/u100",
+      "id": "035a386c-71ff-4e90-94c1-b7e4959e3f8a",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/users/u100",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "users",
+            "u100"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "GET /users/u12",
+      "id": "1f0761d9-ce66-4476-b63b-3938d78dab2e",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/users/u12",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "users",
+            "u12"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "GET /users/u16",
+      "id": "cc32725b-2116-4f92-a79b-ba7578ffff91",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/users/u16",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "users",
+            "u16"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "GET /users/u17",
+      "id": "3146fc46-e518-4b51-afe1-4a2db09fa3db",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/users/u17",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "users",
+            "u17"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "GET /users/u18",
+      "id": "555a8117-dc02-4b95-9db2-2f9515212c7a",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/users/u18",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "users",
+            "u18"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "GET /users/u19",
+      "id": "4368e184-8c07-4a1b-ba29-2e077071b700",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/users/u19",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "users",
+            "u19"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "GET /users/u20",
+      "id": "d26c19c6-bcb4-4e4d-8eab-a0b0f90db3f4",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/users/u20",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "users",
+            "u20"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "GET /users/u21",
+      "id": "b864d442-5334-4a4f-879c-6a0b54b15247",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/users/u21",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "users",
+            "u21"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "GET /users/u23",
+      "id": "a557e228-e91f-4597-89e2-8727a670c1ef",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/users/u23",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "users",
+            "u23"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "GET /users/u3",
+      "id": "2faa4a68-2f26-4cc8-aa51-8d91bc598d25",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/users/u3",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "users",
+            "u3"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "GET /users/u30",
+      "id": "6bc5f2f6-9366-4442-a444-ad445dcb960d",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/users/u30",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "users",
+            "u30"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "GET /users/u32",
+      "id": "0a151b0e-5e05-4012-b72a-40359d63217a",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/users/u32",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "users",
+            "u32"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "GET /users/u38",
+      "id": "7667d59f-cf03-4a14-a8a6-cea06c04d59f",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/users/u38",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "users",
+            "u38"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "GET /users/u4",
+      "id": "4406a408-9507-4f6b-9af6-f0066ace4bd9",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/users/u4",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "users",
+            "u4"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "GET /users/u5",
+      "id": "2452e7d8-1974-40d0-8b05-1142cdf1d2ea",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/users/u5",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "users",
+            "u5"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "GET /users/u56",
+      "id": "df319be1-64d2-405f-88b6-06d66b65f072",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/users/u56",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "users",
+            "u56"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "GET /users/u6",
+      "id": "962c1057-b219-4f8f-b2ba-0a69a64d6c9b",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/users/u6",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "users",
+            "u6"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "GET /users/u7",
+      "id": "9fd031a0-7b5c-4c25-8d16-035ef1e6b826",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/users/u7",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "users",
+            "u7"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "GET /users/u8",
+      "id": "b36d9a6c-9eab-402a-95f9-a17530ab8326",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/users/u8",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "users",
+            "u8"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "GET /users/u80",
+      "id": "8bb37141-50d3-453a-be79-bc69312c445c",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/users/u80",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "users",
+            "u80"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "GET /users/u85",
+      "id": "f3b00e01-b16f-4d91-9769-28e2f5c6fe31",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/users/u85",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "users",
+            "u85"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "GET /users/u9",
+      "id": "d8356638-94f6-4888-a532-c59c0eb3f771",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/users/u9",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "users",
+            "u9"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "GET /users/u90",
+      "id": "e06cf6e2-f1c2-4267-a7a8-9004d124d0f2",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/users/u90",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "users",
+            "u90"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "GET /users/u97",
+      "id": "e4f3de69-4da7-4a42-b4ba-a9a723594984",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/users/u97",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "users",
+            "u97"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "GET /users/{user}",
+      "id": "fe33af16-1b7d-40ce-a515-24f255be458f",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/users/{user}",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "users",
+            "{user}"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "POST /accounts",
+      "id": "a321e73c-d973-479b-9ad1-162fbf26f4a3",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/accounts",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "accounts"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
