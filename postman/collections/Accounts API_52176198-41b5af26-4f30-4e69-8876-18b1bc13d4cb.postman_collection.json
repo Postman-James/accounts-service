@@ -352,5 +352,11 @@
       },
       "response": []
     }
+  ],
+  "variable": [
+    {
+      "key": "accountId",
+      "value": ""
+    }
   ]
 }
