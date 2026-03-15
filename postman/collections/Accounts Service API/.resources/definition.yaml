@@ -1,0 +1,7 @@
+$kind: collection
+name: Accounts Service API
+description: API for managing user accounts, balances, and onboarding. This
+  service integrates with Identity API and Catalog API for full user onboarding
+  workflows.
+variables:
+  baseUrl: http://localhost:3002

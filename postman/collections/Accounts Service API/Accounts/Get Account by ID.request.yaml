@@ -1,0 +1,9 @@
+$kind: http-request
+name: Get Account by ID
+method: GET
+url: '{{baseUrl}}/accounts/:id'
+order: 2000
+description: Fetches an account by ID along with its balance.
+pathVariables:
+  - key: id
+    value: 'a1'

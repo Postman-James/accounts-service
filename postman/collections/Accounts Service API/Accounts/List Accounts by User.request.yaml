@@ -1,0 +1,9 @@
+$kind: http-request
+name: List Accounts by User
+method: GET
+url: '{{baseUrl}}/accounts'
+order: 3000
+description: Lists all accounts for a specific user.
+queryParams:
+  - key: userId
+    value: 'u123'

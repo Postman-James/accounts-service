@@ -1,0 +1,16 @@
+$kind: http-request
+name: Create Account
+method: POST
+url: '{{baseUrl}}/accounts'
+order: 1000
+description: Creates an account for an existing user. Requires userId, type is optional (defaults to "standard").
+headers:
+  - key: Content-Type
+    value: application/json
+body:
+  type: json
+  content: |-
+    {
+      "userId": "u123",
+      "type": "standard"
+    }

@@ -1,0 +1,18 @@
+$kind: http-request
+name: Onboard New User
+method: POST
+url: '{{baseUrl}}/accounts/onboard'
+order: 1000
+description: Full onboarding flow - creates a user via Identity service, creates an account, optionally credits it, and assigns a product via Catalog service.
+headers:
+  - key: Content-Type
+    value: application/json
+body:
+  type: json
+  content: |-
+    {
+      "name": "Ada Lovelace",
+      "email": "ada@example.com",
+      "productId": "p123",
+      "initialCredit": 100
+    }

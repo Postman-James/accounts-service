@@ -57,7 +57,9 @@ spec:
       - args:
         - kube
         - run
-        - --repro-mode
+        - --discovery-mode
+        - --include-namespaces=identity,accounts,catalog
+        - --debug
         env:
         - name: POSTMAN_INSIGHTS_K8S_NODE
           valueFrom:
@@ -65,6 +67,13 @@ spec:
               fieldPath: spec.nodeName
         - name: POSTMAN_INSIGHTS_CRI_ENDPOINT
           value: /var/run/containerd/containerd.sock
+        - name: POSTMAN_INSIGHTS_CLUSTER_NAME
+          value: "demo"
+        - name: POSTMAN_INSIGHTS_API_KEY
+          valueFrom:
+            secretKeyRef:
+              name: postman-agent-secrets
+              key: postman-api-key
         image: public.ecr.aws/postman/postman-insights-agent:latest
         imagePullPolicy: Always
         name: postman-insights-agent

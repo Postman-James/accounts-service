@@ -23,15 +23,10 @@ spec:
           env:
             - name: PORT
               value: "3002"
-            - name: IDENTITY_URL
+            - name: IDENTITY_BASE_URL
               value: "http://identity-api.identity.svc.cluster.local:3001"
-            - name: CATALOG_URL
+            - name: CATALOG_BASE_URL
               value: "http://catalog-api.catalog.svc.cluster.local:3003"
-            # Insights (set by accounts orchestrator)
-            - name: POSTMAN_INSIGHTS_PROJECT_ID
-              value: "__ACCOUNTS_PROJECT_ID__"
-            - name: POSTMAN_INSIGHTS_API_KEY
-              value: "__POSTMAN_API_KEY__"
           ports:
             - containerPort: 3002
           readinessProbe:

@@ -1,18 +1,95 @@
 openapi: 3.0.3
 info:
-  title: Accounts API
-  description: API for managing user accounts, balances, and onboarding workflows
+  title: Accounts Service API
+  description: API for managing user accounts, balances, and onboarding. This service integrates with Identity API and Catalog API for full user onboarding workflows.
   version: 1.0.0
+  contact:
+    name: Accounts Service Team
 
 servers:
-  - url: http://localhost:3002
-    description: Local development server
+  - url: '{baseUrl}'
+    description: Development server
+    variables:
+      baseUrl:
+        default: 'http://localhost:3002'
+        description: Base URL for the Accounts Service API
+
+tags:
+  - name: Health
+    description: Health check endpoints
+  - name: Accounts
+    description: Account management operations
+  - name: Onboarding
+    description: User onboarding workflows
 
 paths:
+  /health:
+    get:
+      tags:
+        - Health
+      summary: Health Check
+      description: Returns the health status of the Accounts Service.
+      operationId: healthCheck
+      responses:
+        '200':
+          description: Service is healthy
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HealthResponse'
+              example:
+                status: ok
+                service: accounts-service
+                timestamp: '2024-01-15T10:30:00Z'
+
   /accounts:
+    get:
+      tags:
+        - Accounts
+      summary: List Accounts by User
+      description: Lists all accounts for a specific user.
+      operationId: listAccountsByUser
+      parameters:
+        - name: userId
+          in: query
+          required: true
+          description: The ID of the user whose accounts to retrieve
+          schema:
+            type: string
+          example: u123
+      responses:
+        '200':
+          description: List of accounts for the user
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Account'
+              example:
+                - id: a1
+                  userId: u123
+                  type: standard
+                  balance: 150.00
+                  createdAt: '2024-01-10T08:00:00Z'
+        '400':
+          description: Bad request - missing or invalid userId
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: User not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
     post:
+      tags:
+        - Accounts
       summary: Create Account
-      description: Creates an account for an existing user
+      description: Creates an account for an existing user. Requires userId, type is optional (defaults to "standard").
       operationId: createAccount
       requestBody:
         required: true
@@ -20,40 +97,30 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/CreateAccountRequest'
+            example:
+              userId: u123
+              type: standard
       responses:
         '201':
           description: Account created successfully
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AccountResponse'
+                $ref: '#/components/schemas/Account'
+              example:
+                id: a2
+                userId: u123
+                type: standard
+                balance: 0.00
+                createdAt: '2024-01-15T10:30:00Z'
         '400':
-          description: Bad request - userId is required
+          description: Bad request - invalid input
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-
-    get:
-      summary: List Accounts
-      description: Lists accounts for a user
-      operationId: listAccounts
-      parameters:
-        - name: userId
-          in: query
-          required: true
-          description: The user ID to filter accounts by
-          schema:
-            type: string
-      responses:
-        '200':
-          description: List of accounts retrieved successfully
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/AccountListResponse'
-        '400':
-          description: Bad request - userId query is required
+        '404':
+          description: User not found
           content:
             application/json:
               schema:
@@ -61,23 +128,32 @@ paths:
 
   /accounts/{id}:
     get:
-      summary: Get Account
-      description: Fetches an account by id along with its balance
-      operationId: getAccount
+      tags:
+        - Accounts
+      summary: Get Account by ID
+      description: Fetches an account by ID along with its balance.
+      operationId: getAccountById
       parameters:
         - name: id
           in: path
           required: true
-          description: The account ID
+          description: The unique identifier of the account
           schema:
             type: string
+          example: a1
       responses:
         '200':
-          description: Account retrieved successfully
+          description: Account details
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AccountWithBalanceResponse'
+                $ref: '#/components/schemas/Account'
+              example:
+                id: a1
+                userId: u123
+                type: standard
+                balance: 150.00
+                createdAt: '2024-01-10T08:00:00Z'
         '404':
           description: Account not found
           content:
@@ -87,31 +163,42 @@ paths:
 
   /accounts/{id}/credit:
     post:
-      summary: Credit Account
-      description: Applies a credit to an account balance
-      operationId: creditAccount
+      tags:
+        - Accounts
+      summary: Apply Credit
+      description: Applies a credit (positive or negative) to an account balance.
+      operationId: applyCredit
       parameters:
         - name: id
           in: path
           required: true
-          description: The account ID
+          description: The unique identifier of the account
           schema:
             type: string
+          example: a1
       requestBody:
         required: true
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/CreditRequest'
+              $ref: '#/components/schemas/ApplyCreditRequest'
+            example:
+              amount: 25
       responses:
         '200':
           description: Credit applied successfully
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/BalanceResponse'
+                $ref: '#/components/schemas/Account'
+              example:
+                id: a1
+                userId: u123
+                type: standard
+                balance: 175.00
+                createdAt: '2024-01-10T08:00:00Z'
         '400':
-          description: Bad request - amount must be a number
+          description: Bad request - invalid amount
           content:
             application/json:
               schema:
@@ -125,171 +212,235 @@ paths:
 
   /accounts/onboard:
     post:
-      summary: Onboard User
-      description: Creates a user, creates an account, optionally credits it, and assigns a product via the catalog service
-      operationId: onboardUser
+      tags:
+        - Onboarding
+      summary: Onboard New User
+      description: Full onboarding flow - creates a user via Identity service, creates an account, optionally credits it, and assigns a product via Catalog service.
+      operationId: onboardNewUser
       requestBody:
         required: true
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/OnboardRequest'
+              $ref: '#/components/schemas/OnboardUserRequest'
+            example:
+              name: Ada Lovelace
+              email: ada@example.com
+              productId: p123
+              initialCredit: 100
       responses:
         '201':
           description: User onboarded successfully
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/OnboardResponse'
+                $ref: '#/components/schemas/OnboardUserResponse'
+              example:
+                user:
+                  id: u456
+                  name: Ada Lovelace
+                  email: ada@example.com
+                account:
+                  id: a3
+                  userId: u456
+                  type: standard
+                  balance: 100.00
+                  createdAt: '2024-01-15T10:30:00Z'
+                product:
+                  id: p123
+                  name: Premium Plan
+                  assignedAt: '2024-01-15T10:30:00Z'
         '400':
-          description: Bad request - name, email, and productId are required
+          description: Bad request - invalid input
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '409':
+          description: Conflict - user with email already exists
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '502':
+          description: Bad gateway - upstream service (Identity or Catalog) unavailable
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
 
-  /health:
-    get:
-      summary: Health Check
-      description: Basic service health check
-      operationId: healthCheck
-      responses:
-        '200':
-          description: Service is healthy
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/HealthResponse'
-
 components:
   schemas:
+    HealthResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          description: Health status indicator
+          example: ok
+        service:
+          type: string
+          description: Name of the service
+          example: accounts-service
+        timestamp:
+          type: string
+          format: date-time
+          description: Current server timestamp
+          example: '2024-01-15T10:30:00Z'
+      required:
+        - status
+
     Account:
       type: object
       properties:
         id:
           type: string
-          description: Unique account identifier
+          description: Unique identifier for the account
+          example: a1
         userId:
           type: string
-          description: The user ID associated with this account
+          description: ID of the user who owns this account
+          example: u123
         type:
           type: string
-          description: Account type
+          description: Type of account
+          enum:
+            - standard
+            - premium
+          example: standard
+        balance:
+          type: number
+          format: double
+          description: Current account balance
+          example: 150.00
         createdAt:
           type: string
           format: date-time
-          description: Account creation timestamp
+          description: Timestamp when the account was created
+          example: '2024-01-10T08:00:00Z'
       required:
         - id
         - userId
         - type
-        - createdAt
+        - balance
 
     CreateAccountRequest:
       type: object
       properties:
         userId:
           type: string
-          description: The user ID to create an account for
+          description: ID of the user to create the account for
+          example: u123
         type:
           type: string
-          description: Account type
+          description: Type of account (defaults to "standard")
+          enum:
+            - standard
+            - premium
           default: standard
+          example: standard
       required:
         - userId
 
-    AccountResponse:
-      type: object
-      properties:
-        account:
-          $ref: '#/components/schemas/Account'
-
-    AccountListResponse:
-      type: object
-      properties:
-        accounts:
-          type: array
-          items:
-            $ref: '#/components/schemas/Account'
-
-    AccountWithBalanceResponse:
-      type: object
-      properties:
-        account:
-          $ref: '#/components/schemas/Account'
-        balance:
-          type: number
-          description: Current account balance
-
-    CreditRequest:
+    ApplyCreditRequest:
       type: object
       properties:
         amount:
           type: number
-          description: Amount to credit to the account
+          format: double
+          description: Amount to credit (positive) or debit (negative)
+          example: 25
       required:
         - amount
 
-    BalanceResponse:
-      type: object
-      properties:
-        accountId:
-          type: string
-          description: The account ID
-        balance:
-          type: number
-          description: Updated account balance
-
-    OnboardRequest:
+    OnboardUserRequest:
       type: object
       properties:
         name:
           type: string
-          description: User's name
+          description: Full name of the new user
+          example: Ada Lovelace
         email:
           type: string
           format: email
-          description: User's email address
+          description: Email address of the new user
+          example: ada@example.com
         productId:
           type: string
-          description: Product ID to assign to the user
+          description: Optional product ID to assign to the user
+          example: p123
         initialCredit:
           type: number
-          description: Initial credit amount
-          default: 0
+          format: double
+          description: Optional initial credit to apply to the account
+          example: 100
       required:
         - name
         - email
-        - productId
 
-    OnboardResponse:
+    OnboardUserResponse:
       type: object
       properties:
         user:
-          type: object
-          description: Created user object
+          $ref: '#/components/schemas/User'
         account:
           $ref: '#/components/schemas/Account'
-        assignment:
-          type: object
-          description: Product assignment object
-        balance:
-          type: number
-          description: Account balance after initial credit
+        product:
+          $ref: '#/components/schemas/AssignedProduct'
 
-    HealthResponse:
+    User:
       type: object
       properties:
-        status:
+        id:
           type: string
-          example: ok
-        service:
+          description: Unique identifier for the user
+          example: u456
+        name:
           type: string
-          example: accounts-api
+          description: Full name of the user
+          example: Ada Lovelace
+        email:
+          type: string
+          format: email
+          description: Email address of the user
+          example: ada@example.com
+      required:
+        - id
+        - name
+        - email
+
+    AssignedProduct:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Product ID
+          example: p123
+        name:
+          type: string
+          description: Product name
+          example: Premium Plan
+        assignedAt:
+          type: string
+          format: date-time
+          description: Timestamp when the product was assigned
+          example: '2024-01-15T10:30:00Z'
 
     Error:
       type: object
       properties:
-        error:
+        code:
           type: string
-          description: Error message
+          description: Error code
+          example: NOT_FOUND
+        message:
+          type: string
+          description: Human-readable error message
+          example: Account not found
+        details:
+          type: object
+          description: Additional error details
+          additionalProperties: true
+      required:
+        - code
+        - message

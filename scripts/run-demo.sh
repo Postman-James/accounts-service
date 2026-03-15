@@ -13,18 +13,19 @@ ACCOUNTS_DIR="${ACCOUNTS_DIR:-${ROOT_DIR}}"
 
 # required Postman vars
 POSTMAN_API_KEY="${POSTMAN_API_KEY:-}"
-IDENTITY_PROJECT_ID="${IDENTITY_PROJECT_ID:-}"
-ACCOUNTS_PROJECT_ID="${ACCOUNTS_PROJECT_ID:-}"
-CATALOG_PROJECT_ID="${CATALOG_PROJECT_ID:-}"
+IDENTITY_PROJECT_ID="${IDENTITY_PROJECT_ID:-placeholder}"
+ACCOUNTS_PROJECT_ID="${ACCOUNTS_PROJECT_ID:-placeholder}"
+CATALOG_PROJECT_ID="${CATALOG_PROJECT_ID:-placeholder}"
 
-if [[ -z "${POSTMAN_API_KEY}" || -z "${IDENTITY_PROJECT_ID}" || -z "${ACCOUNTS_PROJECT_ID}" || -z "${CATALOG_PROJECT_ID}" ]]; then
-  echo "ERROR: missing required env vars."
-  echo "Required:"
-  echo "  POSTMAN_API_KEY"
-  echo "  IDENTITY_PROJECT_ID"
-  echo "  ACCOUNTS_PROJECT_ID"
-  echo "  CATALOG_PROJECT_ID"
+if [[ -z "${POSTMAN_API_KEY}" ]]; then
+  echo "ERROR: missing required env var POSTMAN_API_KEY."
   exit 1
+fi
+
+if [[ "${IDENTITY_PROJECT_ID}" == "placeholder" || "${ACCOUNTS_PROJECT_ID}" == "placeholder" || "${CATALOG_PROJECT_ID}" == "placeholder" ]]; then
+  echo "⚠️  Project IDs not set - using placeholders. Services will still be discovered by the Insights Agent."
+  echo "   Update .env.demo with real project IDs after services appear in the API Catalog UI."
+  echo
 fi
 
 # tools
