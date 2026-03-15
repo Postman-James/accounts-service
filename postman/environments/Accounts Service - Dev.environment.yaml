@@ -1,5 +1,5 @@
-id: e643955a-c8e5-40c7-a728-d9742e44e8ce
-name: Account Service - Dev
+id: 7b2e4f91-c8a3-4d56-b912-3e1f5a8c9d04
+name: Accounts Service - Dev
 values:
   - key: baseUrl
     value: 'http://localhost:3002'
