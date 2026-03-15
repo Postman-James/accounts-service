@@ -1,0 +1,51 @@
+$kind: http-request
+description: Creates a user, creates an account, optionally credits it, and
+  assigns a product via the catalog service
+url: "{{baseUrl}}/accounts/onboard"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: json
+  content: |-
+    {
+    	"name": "John Doe",
+    	"email": "john@example.com",
+    	"productId": "product-123",
+    	"initialCredit": 50
+    }
+scripts:
+  - type: afterResponse
+    code: >-
+      pm.test('Status code is 201', function () {
+          pm.response.to.have.status(201);
+      });
+
+
+      pm.test('Response has user, account, assignment, and balance', function ()
+      {
+          const jsonData = pm.response.json();
+          pm.expect(jsonData).to.have.property('user');
+          pm.expect(jsonData).to.have.property('account');
+          pm.expect(jsonData).to.have.property('assignment');
+          pm.expect(jsonData).to.have.property('balance');
+      });
+
+
+      pm.test('User has required fields', function () {
+          const user = pm.response.json().user;
+          pm.expect(user).to.have.property('id');
+          pm.expect(user).to.have.property('name');
+          pm.expect(user).to.have.property('email');
+      });
+
+
+      pm.test('Account has required fields', function () {
+          const account = pm.response.json().account;
+          pm.expect(account).to.have.property('id');
+          pm.expect(account).to.have.property('userId');
+          pm.expect(account).to.have.property('type');
+          pm.expect(account).to.have.property('createdAt');
+      });
+    language: text/javascript
+order: 5000

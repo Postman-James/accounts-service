@@ -1,0 +1,35 @@
+$kind: http-request
+description: Applies a credit to an account balance
+url: "{{baseUrl}}/accounts/:id/credit"
+method: POST
+headers:
+  Content-Type: application/json
+pathVariables:
+  - key: id
+    value: a1
+    description: The account ID
+body:
+  type: json
+  content: |-
+    {
+    	"amount": 100
+    }
+scripts:
+  - type: afterResponse
+    code: |-
+      pm.test('Status code is 200', function () {
+          pm.response.to.have.status(200);
+      });
+
+      pm.test('Response has accountId and balance', function () {
+          const jsonData = pm.response.json();
+          pm.expect(jsonData).to.have.property('accountId');
+          pm.expect(jsonData).to.have.property('balance');
+      });
+
+      pm.test('Balance is a number', function () {
+          const balance = pm.response.json().balance;
+          pm.expect(balance).to.be.a('number');
+      });
+    language: text/javascript
+order: 4000
